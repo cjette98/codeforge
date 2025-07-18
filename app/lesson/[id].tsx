@@ -9,21 +9,23 @@ import {
 } from 'react-native';
 import { useLocalSearchParams, router } from 'expo-router';
 import { useAppStore } from '@/store/useAppStore';
-import { ArrowLeft, Play, CircleCheck as CheckCircle, Clock, BookOpen, Target, Award } from 'lucide-react-native';
+import { ArrowLeft, Play, CircleCheck as CheckCircle, Clock, BookOpen, Target, Award, Video } from 'lucide-react-native';
+import VideoPlayer from '@/components/VideoPlayer';
 
 export default function LessonScreen() {
   const { id } = useLocalSearchParams();
-  const { 
-    lessons, 
-    sections, 
-    getLessonProgress, 
-    startLesson, 
+  const {
+    lessons,
+    sections,
+    getLessonProgress,
+    startLesson,
     startTest,
     currentTest
   } = useAppStore();
-  
+
   const [activeTab, setActiveTab] = useState<'overview' | 'content'>('overview');
-  
+  const [showVideoPlayer, setShowVideoPlayer] = useState(false);
+
   const lesson = lessons.find(l => l.id === id);
   const section = lesson ? sections.find(s => s.id === lesson.sectionId) : null;
   const progress = lesson ? getLessonProgress(lesson.id) : null;
@@ -51,7 +53,7 @@ export default function LessonScreen() {
       );
       return;
     }
-    
+
     startTest(lesson.id, type);
     router.push(`/test/${lesson.id}?type=${type}`);
   };
@@ -60,6 +62,9 @@ export default function LessonScreen() {
     router.back();
   };
 
+  const handleWatchVideo = () => {
+    setShowVideoPlayer(true);
+  };
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -115,7 +120,7 @@ export default function LessonScreen() {
             <View style={styles.lessonInfoCard}>
               <Text style={styles.lessonTitle}>{lesson.title}</Text>
               <Text style={styles.lessonDescription}>{lesson.description}</Text>
-              
+
               <View style={styles.lessonMeta}>
                 <View style={styles.metaItem}>
                   <Clock size={16} color="#6B7280" />
@@ -131,7 +136,7 @@ export default function LessonScreen() {
             {/* Learning Path */}
             <View style={styles.learningPathCard}>
               <Text style={styles.cardTitle}>Learning Path</Text>
-              
+
               {/* Pre-test */}
               <TouchableOpacity
                 style={[
@@ -269,6 +274,20 @@ export default function LessonScreen() {
           <View style={styles.contentContainer}>
             {progress.preTestCompleted ? (
               <View style={styles.lessonContent}>
+                {/* Video Section */}
+                {lesson.videoUrl && (
+                  <View style={styles.videoSection}>
+                    <TouchableOpacity
+                      style={styles.videoButton}
+                      onPress={handleWatchVideo}
+                    >
+                      <Video size={24} color="#FFFFFF" />
+                      <Text style={styles.videoButtonText}>Watch Video Lesson</Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+
+                {/* Text Content */}
                 <Text style={styles.contentText}>{lesson.content}</Text>
               </View>
             ) : (
@@ -289,6 +308,16 @@ export default function LessonScreen() {
           </View>
         )}
       </ScrollView>
+
+      {/* Video Player Modal */}
+      {lesson.videoUrl && (
+        <VideoPlayer
+          videoUrl={lesson.videoUrl}
+          title={lesson.title}
+          visible={showVideoPlayer}
+          onClose={() => setShowVideoPlayer(false)}
+        />
+      )}
     </View>
   );
 }
@@ -546,6 +575,29 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 4,
     elevation: 2,
+  },
+  videoSection: {
+    marginBottom: 20,
+  },
+  videoButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#EF4444',
+    paddingVertical: 16,
+    paddingHorizontal: 24,
+    borderRadius: 12,
+    gap: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  videoButtonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '600',
   },
   contentText: {
     fontSize: 16,

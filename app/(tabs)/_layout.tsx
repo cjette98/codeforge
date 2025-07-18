@@ -3,7 +3,7 @@ import { Tabs } from 'expo-router';
 import { useAppStore } from '@/store/useAppStore';
 import { router, useFocusEffect } from 'expo-router';
 import { useCallback } from 'react';
-import { Chrome as Home, BookOpen, TrendingUp, User } from 'lucide-react-native';
+import { Chrome as Home, BookOpen, TrendingUp, User, Code } from 'lucide-react-native';
 
 export default function TabLayout() {
   const isAuthenticated = useAppStore((state) => state.isAuthenticated);
@@ -46,6 +46,15 @@ export default function TabLayout() {
           title: 'Lessons',
           tabBarIcon: ({ size, color }) => (
             <BookOpen size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="codeforge"
+        options={{
+          title: 'CodeForge',
+          tabBarIcon: ({ size, color }) => (
+            <Code size={size} color={color} />
           ),
         }}
       />

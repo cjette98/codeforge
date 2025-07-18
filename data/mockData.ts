@@ -19,6 +19,7 @@ export interface Lesson {
   title: string;
   description: string;
   content: string;
+  videoUrl?: string;
   estimatedTime: number;
   order: number;
   sectionId: string;
@@ -44,9 +45,9 @@ export const mockUsers: User[] = [
   },
   {
     id: '2',
-    email: 'learner@example.com',
+    email: 'jane@example.com',
     password: 'password123',
-    name: 'Cindy Dela Cruz',
+    name: 'Jane Smith',
     avatar: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150&h=150'
   }
 ];
@@ -90,25 +91,26 @@ export const lessons: Lesson[] = [
     description: 'Learn what C++ is and its basic syntax',
     content: `C++ is a general-purpose programming language created by Bjarne Stroustrup as an extension of the C programming language. It was originally named "C with Classes" but was later renamed C++ in 1983.
 
-Key features of C++:
-- Object-oriented programming support
-- Low-level memory manipulation
-- Rich library support
-- Platform independent
-- Case-sensitive language
+  Key features of C++:
+  - Object-oriented programming support
+  - Low-level memory manipulation
+  - Rich library support
+  - Platform independent
+  - Case-sensitive language
 
-Basic C++ Program Structure:
-\`\`\`cpp
-#include <iostream>
-using namespace std;
+  Basic C++ Program Structure:
+  \`\`\`cpp
+  #include <iostream>
+  using namespace std;
 
-int main() {
-    cout << "Hello, World!" << endl;
-    return 0;
-}
-\`\`\`
+  int main() {
+      cout << "Hello, World!" << endl;
+      return 0;
+  }
+  \`\`\`
 
-The #include directive tells the preprocessor to include the contents of another file. The iostream library provides input/output functionality.`,
+  The #include directive tells the preprocessor to include the contents of another file. The iostream library provides input/output functionality.`,
+    videoUrl: 'https://www.youtube.com/watch?v=s0g4ty29Xgg',
     estimatedTime: 30,
     order: 1,
     sectionId: 'basics',
@@ -165,29 +167,30 @@ The #include directive tells the preprocessor to include the contents of another
     description: 'Understand different data types and variable declaration',
     content: `Variables are containers for storing data values. In C++, every variable has a data type that determines what kind of data it can store.
 
-Basic Data Types:
-- int: Integer numbers (4 bytes)
-- float: Floating point numbers (4 bytes)
-- double: Double precision floating point (8 bytes)
-- char: Single character (1 byte)
-- bool: Boolean values (true/false)
-- string: Sequence of characters
+  Basic Data Types:
+  - int: Integer numbers (4 bytes)
+  - float: Floating point numbers (4 bytes)
+  - double: Double precision floating point (8 bytes)
+  - char: Single character (1 byte)
+  - bool: Boolean values (true/false)
+  - string: Sequence of characters
 
-Variable Declaration:
-\`\`\`cpp
-int age = 25;
-float height = 5.9;
-double salary = 50000.50;
-char grade = 'A';
-bool isStudent = true;
-string name = "John";
-\`\`\`
+  Variable Declaration:
+  \`\`\`cpp
+  int age = 25;
+  float height = 5.9;
+  double salary = 50000.50;
+  char grade = 'A';
+  bool isStudent = true;
+  string name = "John";
+  \`\`\`
 
-Constants:
-\`\`\`cpp
-const int MAX_SIZE = 100;
-const double PI = 3.14159;
-\`\`\``,
+  Constants:
+  \`\`\`cpp
+  const int MAX_SIZE = 100;
+  const double PI = 3.14159;
+  \`\`\``,
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
     estimatedTime: 45,
     order: 2,
     sectionId: 'basics',
@@ -244,40 +247,41 @@ const double PI = 3.14159;
     description: 'Learn about arithmetic, logical, and comparison operators',
     content: `Operators are symbols that perform operations on variables and values. C++ has several types of operators:
 
-Arithmetic Operators:
-- + (Addition)
-- - (Subtraction)
-- * (Multiplication)
-- / (Division)
-- % (Modulus)
+  Arithmetic Operators:
+  - + (Addition)
+  - - (Subtraction)
+  - * (Multiplication)
+  - / (Division)
+  - % (Modulus)
 
-Comparison Operators:
-- == (Equal to)
-- != (Not equal to)
-- > (Greater than)
-- < (Less than)
-- >= (Greater than or equal to)
-- <= (Less than or equal to)
+  Comparison Operators:
+  - == (Equal to)
+  - != (Not equal to)
+  - > (Greater than)
+  - < (Less than)
+  - >= (Greater than or equal to)
+  - <= (Less than or equal to)
 
-Logical Operators:
-- && (AND)
-- || (OR)
-- ! (NOT)
+  Logical Operators:
+  - && (AND)
+  - || (OR)
+  - ! (NOT)
 
-Assignment Operators:
-- = (Assignment)
-- += (Add and assign)
-- -= (Subtract and assign)
-- *= (Multiply and assign)
-- /= (Divide and assign)
+  Assignment Operators:
+  - = (Assignment)
+  - += (Add and assign)
+  - -= (Subtract and assign)
+  - *= (Multiply and assign)
+  - /= (Divide and assign)
 
-Example:
-\`\`\`cpp
-int a = 10, b = 5;
-int sum = a + b;        // 15
-bool result = a > b;    // true
-a += 3;                 // a becomes 13
-\`\`\``,
+  Example:
+  \`\`\`cpp
+  int a = 10, b = 5;
+  int sum = a + b;        // 15
+  bool result = a > b;    // true
+  a += 3;                 // a becomes 13
+  \`\`\``,
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
     estimatedTime: 40,
     order: 3,
     sectionId: 'basics',
@@ -336,46 +340,47 @@ a += 3;                 // a becomes 13
     description: 'Learn conditional programming with if-else statements',
     content: `Conditional statements allow your program to make decisions based on certain conditions.
 
-Basic If Statement:
-\`\`\`cpp
-if (condition) {
-    // code to execute if condition is true
-}
-\`\`\`
+  Basic If Statement:
+  \`\`\`cpp
+  if (condition) {
+      // code to execute if condition is true
+  }
+  \`\`\`
 
-If-Else Statement:
-\`\`\`cpp
-if (condition) {
-    // code if condition is true
-} else {
-    // code if condition is false
-}
-\`\`\`
+  If-Else Statement:
+  \`\`\`cpp
+  if (condition) {
+      // code if condition is true
+  } else {
+      // code if condition is false
+  }
+  \`\`\`
 
-If-Else If-Else:
-\`\`\`cpp
-if (condition1) {
-    // code for condition1
-} else if (condition2) {
-    // code for condition2
-} else {
-    // code if no condition is true
-}
-\`\`\`
+  If-Else If-Else:
+  \`\`\`cpp
+  if (condition1) {
+      // code for condition1
+  } else if (condition2) {
+      // code for condition2
+  } else {
+      // code if no condition is true
+  }
+  \`\`\`
 
-Example:
-\`\`\`cpp
-int score = 85;
-if (score >= 90) {
-    cout << "Grade A";
-} else if (score >= 80) {
-    cout << "Grade B";
-} else if (score >= 70) {
-    cout << "Grade C";
-} else {
-    cout << "Grade F";
-}
-\`\`\``,
+  Example:
+  \`\`\`cpp
+  int score = 85;
+  if (score >= 90) {
+      cout << "Grade A";
+  } else if (score >= 80) {
+      cout << "Grade B";
+  } else if (score >= 70) {
+      cout << "Grade C";
+  } else {
+      cout << "Grade F";
+  }
+  \`\`\``,
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
     estimatedTime: 35,
     order: 1,
     sectionId: 'control-structures',
@@ -432,49 +437,50 @@ if (score >= 90) {
     description: 'Master for, while, and do-while loops',
     content: `Loops allow you to execute a block of code repeatedly.
 
-For Loop:
-\`\`\`cpp
-for (initialization; condition; increment) {
-    // code to repeat
-}
+  For Loop:
+  \`\`\`cpp
+  for (initialization; condition; increment) {
+      // code to repeat
+  }
 
-// Example
-for (int i = 0; i < 5; i++) {
-    cout << i << " ";
-}
-\`\`\`
+  // Example
+  for (int i = 0; i < 5; i++) {
+      cout << i << " ";
+  }
+  \`\`\`
 
-While Loop:
-\`\`\`cpp
-while (condition) {
-    // code to repeat
-}
+  While Loop:
+  \`\`\`cpp
+  while (condition) {
+      // code to repeat
+  }
 
-// Example
-int i = 0;
-while (i < 5) {
-    cout << i << " ";
-    i++;
-}
-\`\`\`
+  // Example
+  int i = 0;
+  while (i < 5) {
+      cout << i << " ";
+      i++;
+  }
+  \`\`\`
 
-Do-While Loop:
-\`\`\`cpp
-do {
-    // code to repeat
-} while (condition);
+  Do-While Loop:
+  \`\`\`cpp
+  do {
+      // code to repeat
+  } while (condition);
 
-// Example
-int i = 0;
-do {
-    cout << i << " ";
-    i++;
-} while (i < 5);
-\`\`\`
+  // Example
+  int i = 0;
+  do {
+      cout << i << " ";
+      i++;
+  } while (i < 5);
+  \`\`\`
 
-Loop Control:
-- break: Exit the loop
-- continue: Skip current iteration`,
+  Loop Control:
+  - break: Exit the loop
+  - continue: Skip current iteration`,
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
     estimatedTime: 50,
     order: 2,
     sectionId: 'control-structures',
@@ -531,50 +537,51 @@ Loop Control:
     description: 'Learn multi-way branching with switch statements',
     content: `Switch statements provide a way to execute different code blocks based on the value of a variable.
 
-Basic Switch Statement:
-\`\`\`cpp
-switch (variable) {
-    case value1:
-        // code for value1
-        break;
-    case value2:
-        // code for value2
-        break;
-    default:
-        // code if no case matches
-        break;
-}
-\`\`\`
+  Basic Switch Statement:
+  \`\`\`cpp
+  switch (variable) {
+      case value1:
+          // code for value1
+          break;
+      case value2:
+          // code for value2
+          break;
+      default:
+          // code if no case matches
+          break;
+  }
+  \`\`\`
 
-Example:
-\`\`\`cpp
-int day = 3;
-switch (day) {
-    case 1:
-        cout << "Monday";
-        break;
-    case 2:
-        cout << "Tuesday";
-        break;
-    case 3:
-        cout << "Wednesday";
-        break;
-    case 4:
-        cout << "Thursday";
-        break;
-    case 5:
-        cout << "Friday";
-        break;
-    default:
-        cout << "Weekend";
-        break;
-}
-\`\`\`
+  Example:
+  \`\`\`cpp
+  int day = 3;
+  switch (day) {
+      case 1:
+          cout << "Monday";
+          break;
+      case 2:
+          cout << "Tuesday";
+          break;
+      case 3:
+          cout << "Wednesday";
+          break;
+      case 4:
+          cout << "Thursday";
+          break;
+      case 5:
+          cout << "Friday";
+          break;
+      default:
+          cout << "Weekend";
+          break;
+  }
+  \`\`\`
 
-Important Notes:
-- Each case must end with break (unless fall-through is intended)
-- Default case is optional but recommended
-- Switch works with integers, characters, and enums`,
+  Important Notes:
+  - Each case must end with break (unless fall-through is intended)
+  - Default case is optional but recommended
+  - Switch works with integers, characters, and enums`,
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
     estimatedTime: 30,
     order: 3,
     sectionId: 'control-structures',
@@ -633,42 +640,43 @@ Important Notes:
     description: 'Learn to create and use functions in C++',
     content: `Functions are blocks of code that perform specific tasks and can be reused throughout your program.
 
-Function Declaration:
-\`\`\`cpp
-return_type function_name(parameters);
-\`\`\`
+  Function Declaration:
+  \`\`\`cpp
+  return_type function_name(parameters);
+  \`\`\`
 
-Function Definition:
-\`\`\`cpp
-return_type function_name(parameters) {
-    // function body
-    return value; // if return_type is not void
-}
-\`\`\`
+  Function Definition:
+  \`\`\`cpp
+  return_type function_name(parameters) {
+      // function body
+      return value; // if return_type is not void
+  }
+  \`\`\`
 
-Example:
-\`\`\`cpp
-// Function declaration
-int add(int a, int b);
+  Example:
+  \`\`\`cpp
+  // Function declaration
+  int add(int a, int b);
 
-// Function definition
-int add(int a, int b) {
-    return a + b;
-}
+  // Function definition
+  int add(int a, int b) {
+      return a + b;
+  }
 
-// Function call
-int main() {
-    int result = add(5, 3);
-    cout << result; // Output: 8
-    return 0;
-}
-\`\`\`
+  // Function call
+  int main() {
+      int result = add(5, 3);
+      cout << result; // Output: 8
+      return 0;
+  }
+  \`\`\`
 
-Function Types:
-- Void functions (no return value)
-- Value-returning functions
-- Functions with parameters
-- Functions without parameters`,
+  Function Types:
+  - Void functions (no return value)
+  - Value-returning functions
+  - Functions with parameters
+  - Functions without parameters`,
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
     estimatedTime: 45,
     order: 1,
     sectionId: 'functions',
@@ -725,46 +733,47 @@ Function Types:
     description: 'Understand parameter passing and function overloading',
     content: `Functions can accept parameters to make them more flexible and reusable.
 
-Parameter Types:
-1. Pass by Value
-2. Pass by Reference
-3. Pass by Pointer
+  Parameter Types:
+  1. Pass by Value
+  2. Pass by Reference
+  3. Pass by Pointer
 
-Pass by Value:
-\`\`\`cpp
-void func(int x) {
-    x = 10; // Original value unchanged
-}
-\`\`\`
+  Pass by Value:
+  \`\`\`cpp
+  void func(int x) {
+      x = 10; // Original value unchanged
+  }
+  \`\`\`
 
-Pass by Reference:
-\`\`\`cpp
-void func(int &x) {
-    x = 10; // Original value changed
-}
-\`\`\`
+  Pass by Reference:
+  \`\`\`cpp
+  void func(int &x) {
+      x = 10; // Original value changed
+  }
+  \`\`\`
 
-Default Parameters:
-\`\`\`cpp
-int multiply(int a, int b = 1) {
-    return a * b;
-}
+  Default Parameters:
+  \`\`\`cpp
+  int multiply(int a, int b = 1) {
+      return a * b;
+  }
 
-// Can be called as:
-multiply(5);    // Uses default b = 1
-multiply(5, 3); // Uses b = 3
-\`\`\`
+  // Can be called as:
+  multiply(5);    // Uses default b = 1
+  multiply(5, 3); // Uses b = 3
+  \`\`\`
 
-Function Overloading:
-\`\`\`cpp
-int add(int a, int b) {
-    return a + b;
-}
+  Function Overloading:
+  \`\`\`cpp
+  int add(int a, int b) {
+      return a + b;
+  }
 
-double add(double a, double b) {
-    return a + b;
-}
-\`\`\``,
+  double add(double a, double b) {
+      return a + b;
+  }
+  \`\`\``,
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
     estimatedTime: 40,
     order: 2,
     sectionId: 'functions',
@@ -821,46 +830,47 @@ double add(double a, double b) {
     description: 'Learn recursive functions and their applications',
     content: `Recursion is a programming technique where a function calls itself to solve a problem.
 
-Basic Recursion Structure:
-\`\`\`cpp
-return_type recursive_function(parameters) {
-    // Base case
-    if (base_condition) {
-        return base_value;
-    }
-    
-    // Recursive case
-    return recursive_function(modified_parameters);
-}
-\`\`\`
+  Basic Recursion Structure:
+  \`\`\`cpp
+  return_type recursive_function(parameters) {
+      // Base case
+      if (base_condition) {
+          return base_value;
+      }
 
-Example - Factorial:
-\`\`\`cpp
-int factorial(int n) {
-    // Base case
-    if (n <= 1) {
-        return 1;
-    }
-    
-    // Recursive case
-    return n * factorial(n - 1);
-}
-\`\`\`
+      // Recursive case
+      return recursive_function(modified_parameters);
+  }
+  \`\`\`
 
-Example - Fibonacci:
-\`\`\`cpp
-int fibonacci(int n) {
-    if (n <= 1) {
-        return n;
-    }
-    return fibonacci(n - 1) + fibonacci(n - 2);
-}
-\`\`\`
+  Example - Factorial:
+  \`\`\`cpp
+  int factorial(int n) {
+      // Base case
+      if (n <= 1) {
+          return 1;
+      }
 
-Important Points:
-- Must have a base case to stop recursion
-- Each recursive call should move toward the base case
-- Can be memory intensive due to function call stack`,
+      // Recursive case
+      return n * factorial(n - 1);
+  }
+  \`\`\`
+
+  Example - Fibonacci:
+  \`\`\`cpp
+  int fibonacci(int n) {
+      if (n <= 1) {
+          return n;
+      }
+      return fibonacci(n - 1) + fibonacci(n - 2);
+  }
+  \`\`\`
+
+  Important Points:
+  - Must have a base case to stop recursion
+  - Each recursive call should move toward the base case
+  - Can be memory intensive due to function call stack`,
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4',
     estimatedTime: 50,
     order: 3,
     sectionId: 'functions',
@@ -919,47 +929,48 @@ Important Points:
     description: 'Introduction to object-oriented programming concepts',
     content: `Object-Oriented Programming (OOP) is a programming paradigm based on the concept of objects, which contain data (attributes) and code (methods).
 
-Class Definition:
-\`\`\`cpp
-class ClassName {
-private:
-    // Private members
-    int privateVar;
-    
-public:
-    // Public members
-    int publicVar;
-    
-    // Constructor
-    ClassName() {
-        privateVar = 0;
-        publicVar = 0;
-    }
-    
-    // Methods
-    void setPrivateVar(int value) {
-        privateVar = value;
-    }
-    
-    int getPrivateVar() {
-        return privateVar;
-    }
-};
-\`\`\`
+  Class Definition:
+  \`\`\`cpp
+  class ClassName {
+  private:
+      // Private members
+      int privateVar;
 
-Creating Objects:
-\`\`\`cpp
-ClassName obj1;           // Default constructor
-ClassName obj2();         // Also calls default constructor
-ClassName* obj3 = new ClassName(); // Dynamic allocation
-\`\`\`
+  public:
+      // Public members
+      int publicVar;
 
-Accessing Members:
-\`\`\`cpp
-obj1.publicVar = 10;
-obj1.setPrivateVar(5);
-int value = obj1.getPrivateVar();
-\`\`\``,
+      // Constructor
+      ClassName() {
+          privateVar = 0;
+          publicVar = 0;
+      }
+
+      // Methods
+      void setPrivateVar(int value) {
+          privateVar = value;
+      }
+
+      int getPrivateVar() {
+          return privateVar;
+      }
+  };
+  \`\`\`
+
+  Creating Objects:
+  \`\`\`cpp
+  ClassName obj1;           // Default constructor
+  ClassName obj2();         // Also calls default constructor
+  ClassName* obj3 = new ClassName(); // Dynamic allocation
+  \`\`\`
+
+  Accessing Members:
+  \`\`\`cpp
+  obj1.publicVar = 10;
+  obj1.setPrivateVar(5);
+  int value = obj1.getPrivateVar();
+  \`\`\``,
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
     estimatedTime: 60,
     order: 1,
     sectionId: 'oop',
@@ -1016,50 +1027,51 @@ int value = obj1.getPrivateVar();
     description: 'Learn about inheritance and code reusability',
     content: `Inheritance allows a class to inherit properties and methods from another class, promoting code reusability.
 
-Basic Inheritance:
-\`\`\`cpp
-// Base class
-class Animal {
-protected:
-    string name;
-    
-public:
-    Animal(string n) : name(n) {}
-    
-    void eat() {
-        cout << name << " is eating" << endl;
-    }
-    
-    virtual void makeSound() {
-        cout << "Some generic animal sound" << endl;
-    }
-};
+  Basic Inheritance:
+  \`\`\`cpp
+  // Base class
+  class Animal {
+  protected:
+      string name;
 
-// Derived class
-class Dog : public Animal {
-public:
-    Dog(string n) : Animal(n) {}
-    
-    void makeSound() override {
-        cout << name << " says Woof!" << endl;
-    }
-    
-    void wagTail() {
-        cout << name << " is wagging tail" << endl;
-    }
-};
-\`\`\`
+  public:
+      Animal(string n) : name(n) {}
 
-Types of Inheritance:
-- Single Inheritance: One base class
-- Multiple Inheritance: Multiple base classes
-- Multilevel Inheritance: Chain of inheritance
-- Hierarchical Inheritance: Multiple derived classes from one base
+      void eat() {
+          cout << name << " is eating" << endl;
+      }
 
-Access Specifiers in Inheritance:
-- public inheritance: public → public, protected → protected
-- protected inheritance: public → protected, protected → protected
-- private inheritance: public → private, protected → private`,
+      virtual void makeSound() {
+          cout << "Some generic animal sound" << endl;
+      }
+  };
+
+  // Derived class
+  class Dog : public Animal {
+  public:
+      Dog(string n) : Animal(n) {}
+
+      void makeSound() override {
+          cout << name << " says Woof!" << endl;
+      }
+
+      void wagTail() {
+          cout << name << " is wagging tail" << endl;
+      }
+  };
+  \`\`\`
+
+  Types of Inheritance:
+  - Single Inheritance: One base class
+  - Multiple Inheritance: Multiple base classes
+  - Multilevel Inheritance: Chain of inheritance
+  - Hierarchical Inheritance: Multiple derived classes from one base
+
+  Access Specifiers in Inheritance:
+  - public inheritance: public → public, protected → protected
+  - protected inheritance: public → protected, protected → protected
+  - private inheritance: public → private, protected → private`,
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4',
     estimatedTime: 55,
     order: 2,
     sectionId: 'oop',
@@ -1116,61 +1128,62 @@ Access Specifiers in Inheritance:
     description: 'Understand polymorphism and virtual functions',
     content: `Polymorphism allows objects of different types to be treated as objects of a common base type, while still calling the appropriate methods for their actual type.
 
-Virtual Functions:
-\`\`\`cpp
-class Shape {
-public:
-    virtual double area() = 0;  // Pure virtual function
-    virtual void draw() {       // Virtual function
-        cout << "Drawing a shape" << endl;
-    }
-};
+  Virtual Functions:
+  \`\`\`cpp
+  class Shape {
+  public:
+      virtual double area() = 0;  // Pure virtual function
+      virtual void draw() {       // Virtual function
+          cout << "Drawing a shape" << endl;
+      }
+  };
 
-class Circle : public Shape {
-private:
-    double radius;
-    
-public:
-    Circle(double r) : radius(r) {}
-    
-    double area() override {
-        return 3.14159 * radius * radius;
-    }
-    
-    void draw() override {
-        cout << "Drawing a circle" << endl;
-    }
-};
+  class Circle : public Shape {
+  private:
+      double radius;
 
-class Rectangle : public Shape {
-private:
-    double width, height;
-    
-public:
-    Rectangle(double w, double h) : width(w), height(h) {}
-    
-    double area() override {
-        return width * height;
-    }
-    
-    void draw() override {
-        cout << "Drawing a rectangle" << endl;
-    }
-};
-\`\`\`
+  public:
+      Circle(double r) : radius(r) {}
 
-Runtime Polymorphism:
-\`\`\`cpp
-Shape* shapes[] = {
-    new Circle(5),
-    new Rectangle(4, 6)
-};
+      double area() override {
+          return 3.14159 * radius * radius;
+      }
 
-for (int i = 0; i < 2; i++) {
-    shapes[i]->draw();  // Calls appropriate draw method
-    cout << "Area: " << shapes[i]->area() << endl;
-}
-\`\`\``,
+      void draw() override {
+          cout << "Drawing a circle" << endl;
+      }
+  };
+
+  class Rectangle : public Shape {
+  private:
+      double width, height;
+
+  public:
+      Rectangle(double w, double h) : width(w), height(h) {}
+
+      double area() override {
+          return width * height;
+      }
+
+      void draw() override {
+          cout << "Drawing a rectangle" << endl;
+      }
+  };
+  \`\`\`
+
+  Runtime Polymorphism:
+  \`\`\`cpp
+  Shape* shapes[] = {
+      new Circle(5),
+      new Rectangle(4, 6)
+  };
+
+  for (int i = 0; i < 2; i++) {
+      shapes[i]->draw();  // Calls appropriate draw method
+      cout << "Area: " << shapes[i]->area() << endl;
+  }
+  \`\`\``,
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4',
     estimatedTime: 50,
     order: 3,
     sectionId: 'oop',

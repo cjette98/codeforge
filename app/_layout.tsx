@@ -13,6 +13,7 @@ export default function RootLayout() {
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="lesson/[id]" />
         <Stack.Screen name="test/[id]" />
+        <Stack.Screen name="challenge/[id]" />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />

@@ -29,6 +29,9 @@
       "eas": {
         "projectId": "93615b20-3388-4fea-9912-f5ac98ca074e"
       }
+    },
+    "android": {
+      "package": "com.codeforge.app"
     }
   }
 }

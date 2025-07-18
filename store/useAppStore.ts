@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { User, Lesson, Section, Question, lessons, sections, mockUsers } from '@/data/mockData';
+import { CodingChallenge, ChallengeProgress, codingChallenges } from '@/data/codingChallenges';
 
 export interface TestResult {
   lessonId: string;
@@ -43,6 +44,10 @@ interface AppState {
     startTime: Date;
   } | null;
   
+  // Coding challenges
+  codingChallenges: CodingChallenge[];
+  challengeProgress: Record<string, ChallengeProgress>;
+  
   // Actions
   login: (email: string, password: string) => Promise<boolean>;
   logout: () => void;
@@ -59,6 +64,13 @@ interface AppState {
   getLessonProgress: (lessonId: string) => LessonProgress;
   getSectionProgress: (sectionId: string) => { completed: number; total: number };
   getOverallProgress: () => { completed: number; total: number };
+  
+  // Challenge actions
+  getChallengeProgress: (challengeId: string) => ChallengeProgress;
+  isChallengeUnlocked: (challengeId: string) => boolean;
+  submitChallenge: (challengeId: string, code: string, timeTaken: number) => boolean;
+  getCompletedChallenges: () => number;
+  getTotalPoints: () => number;
 }
 
 export const useAppStore = create<AppState>()(
@@ -71,6 +83,8 @@ export const useAppStore = create<AppState>()(
       sections,
       lessonProgress: {},
       currentTest: null,
+      codingChallenges,
+      challengeProgress: {},
 
       // Authentication actions
       login: async (email: string, password: string) => {
@@ -273,6 +287,80 @@ export const useAppStore = create<AppState>()(
           total: allLessons.length
         };
       },
+      
+      // Challenge actions
+      getChallengeProgress: (challengeId: string) => {
+        return get().challengeProgress[challengeId] || {
+          challengeId,
+          isCompleted: false,
+          attempts: 0,
+        };
+      },
+      
+      isChallengeUnlocked: (challengeId: string) => {
+        const challenges = get().codingChallenges.sort((a, b) => a.order - b.order);
+        const currentChallenge = challenges.find(c => c.id === challengeId);
+        
+        if (!currentChallenge) return false;
+        
+        // First challenge is always unlocked
+        if (currentChallenge.order === 1) return true;
+        
+        // Check if previous challenge is completed
+        const previousChallenge = challenges.find(c => c.order === currentChallenge.order - 1);
+        if (previousChallenge) {
+          const prevProgress = get().challengeProgress[previousChallenge.id];
+          return prevProgress?.isCompleted || false;
+        }
+        
+        return false;
+      },
+      
+      submitChallenge: (challengeId: string, code: string, timeTaken: number) => {
+        // In a real app, this would run the code against test cases
+        // For now, we'll simulate a successful submission
+        const challenge = get().codingChallenges.find(c => c.id === challengeId);
+        if (!challenge) return false;
+        
+        const currentProgress = get().challengeProgress[challengeId] || {
+          challengeId,
+          isCompleted: false,
+          attempts: 0,
+        };
+        
+        const newProgress: ChallengeProgress = {
+          ...currentProgress,
+          isCompleted: true,
+          attempts: currentProgress.attempts + 1,
+          bestTime: currentProgress.bestTime ? Math.min(currentProgress.bestTime, timeTaken) : timeTaken,
+          completedAt: new Date(),
+          lastAttempt: new Date(),
+          code,
+        };
+        
+        set(state => ({
+          challengeProgress: {
+            ...state.challengeProgress,
+            [challengeId]: newProgress
+          }
+        }));
+        
+        return true;
+      },
+      
+      getCompletedChallenges: () => {
+        return Object.values(get().challengeProgress).filter(p => p.isCompleted).length;
+      },
+      
+      getTotalPoints: () => {
+        const completedChallenges = Object.values(get().challengeProgress)
+          .filter(p => p.isCompleted);
+        
+        return completedChallenges.reduce((total, progress) => {
+          const challenge = get().codingChallenges.find(c => c.id === progress.challengeId);
+          return total + (challenge?.points || 0);
+        }, 0);
+      },
     }),
     {
       name: 'udemy-clone-storage',
@@ -281,6 +369,7 @@ export const useAppStore = create<AppState>()(
         currentUser: state.currentUser,
         isAuthenticated: state.isAuthenticated,
         lessonProgress: state.lessonProgress,
+        challengeProgress: state.challengeProgress,
       }),
     }
   )
