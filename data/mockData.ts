@@ -190,7 +190,7 @@ export const lessons: Lesson[] = [
   const int MAX_SIZE = 100;
   const double PI = 3.14159;
   \`\`\``,
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+    videoUrl: 'https://www.youtube.com/watch?v=s0g4ty29Xgg',
     estimatedTime: 45,
     order: 2,
     sectionId: 'basics',
@@ -281,7 +281,7 @@ export const lessons: Lesson[] = [
   bool result = a > b;    // true
   a += 3;                 // a becomes 13
   \`\`\``,
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    videoUrl: 'https://www.youtube.com/watch?v=s0g4ty29Xgg',
     estimatedTime: 40,
     order: 3,
     sectionId: 'basics',
@@ -380,7 +380,7 @@ export const lessons: Lesson[] = [
       cout << "Grade F";
   }
   \`\`\``,
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    videoUrl: 'https://www.youtube.com/watch?v=s0g4ty29Xgg',
     estimatedTime: 35,
     order: 1,
     sectionId: 'control-structures',
@@ -480,7 +480,7 @@ export const lessons: Lesson[] = [
   Loop Control:
   - break: Exit the loop
   - continue: Skip current iteration`,
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+    videoUrl: 'https://www.youtube.com/watch?v=s0g4ty29Xgg',
     estimatedTime: 50,
     order: 2,
     sectionId: 'control-structures',
@@ -581,7 +581,7 @@ export const lessons: Lesson[] = [
   - Each case must end with break (unless fall-through is intended)
   - Default case is optional but recommended
   - Switch works with integers, characters, and enums`,
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
+    videoUrl: 'https://www.youtube.com/watch?v=s0g4ty29Xgg',
     estimatedTime: 30,
     order: 3,
     sectionId: 'control-structures',
@@ -676,7 +676,7 @@ export const lessons: Lesson[] = [
   - Value-returning functions
   - Functions with parameters
   - Functions without parameters`,
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
+    videoUrl: 'https://www.youtube.com/watch?v=s0g4ty29Xgg',
     estimatedTime: 45,
     order: 1,
     sectionId: 'functions',
@@ -773,7 +773,7 @@ export const lessons: Lesson[] = [
       return a + b;
   }
   \`\`\``,
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
+    videoUrl: 'https://www.youtube.com/watch?v=s0g4ty29Xgg',
     estimatedTime: 40,
     order: 2,
     sectionId: 'functions',
@@ -870,7 +870,7 @@ export const lessons: Lesson[] = [
   - Must have a base case to stop recursion
   - Each recursive call should move toward the base case
   - Can be memory intensive due to function call stack`,
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4',
+    videoUrl: 'https://www.youtube.com/watch?v=s0g4ty29Xgg',
     estimatedTime: 50,
     order: 3,
     sectionId: 'functions',
@@ -970,7 +970,7 @@ export const lessons: Lesson[] = [
   obj1.setPrivateVar(5);
   int value = obj1.getPrivateVar();
   \`\`\``,
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
+    videoUrl: 'https://www.youtube.com/watch?v=s0g4ty29Xgg',
     estimatedTime: 60,
     order: 1,
     sectionId: 'oop',
@@ -1071,7 +1071,7 @@ export const lessons: Lesson[] = [
   - public inheritance: public → public, protected → protected
   - protected inheritance: public → protected, protected → protected
   - private inheritance: public → private, protected → private`,
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4',
+    videoUrl: 'https://www.youtube.com/watch?v=s0g4ty29Xgg',
     estimatedTime: 55,
     order: 2,
     sectionId: 'oop',
@@ -1183,7 +1183,7 @@ export const lessons: Lesson[] = [
       cout << "Area: " << shapes[i]->area() << endl;
   }
   \`\`\``,
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4',
+    videoUrl: 'https://www.youtube.com/watch?v=s0g4ty29Xgg',
     estimatedTime: 50,
     order: 3,
     sectionId: 'oop',
