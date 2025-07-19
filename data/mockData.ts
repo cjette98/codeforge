@@ -45,7 +45,7 @@ export const mockUsers: User[] = [
   },
   {
     id: '2',
-    email: 'jane@example.com',
+    email: 'learner@example.com',
     password: 'password123',
     name: 'Jane Smith',
     avatar: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150&h=150'

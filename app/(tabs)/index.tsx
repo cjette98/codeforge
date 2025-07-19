@@ -15,8 +15,8 @@ export default function HomeScreen() {
   const { currentUser, sections, getOverallProgress, getSectionProgress } = useAppStore();
   const overallProgress = getOverallProgress();
 
-  const progressPercentage = overallProgress.total > 0 
-    ? Math.round((overallProgress.completed / overallProgress.total) * 100) 
+  const progressPercentage = overallProgress.total > 0
+    ? Math.round((overallProgress.completed / overallProgress.total) * 100)
     : 0;
 
   const handleSectionPress = (sectionId: string) => {
@@ -36,9 +36,9 @@ export default function HomeScreen() {
             <Text style={styles.greeting}>Welcome back,</Text>
             <Text style={styles.userName}>{currentUser?.name || 'Learner'}!</Text>
           </View>
-          <Image 
-            source={{ 
-              uri: currentUser?.avatar || 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100&h=100' 
+          <Image
+            source={{
+              uri: currentUser?.avatar || 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'
             }}
             style={styles.avatar}
           />
@@ -49,7 +49,7 @@ export default function HomeScreen() {
       <View style={styles.progressCard}>
         <View style={styles.progressHeader}>
           <Trophy size={24} color="#F59E0B" />
-          <Text style={styles.progressTitle}>Learning Progress</Text>
+          <Text style={styles.progressTitle}>Learning Progress </Text>
         </View>
         <View style={styles.progressContent}>
           <Text style={styles.progressPercentage}>{progressPercentage}%</Text>
@@ -58,12 +58,12 @@ export default function HomeScreen() {
           </Text>
         </View>
         <View style={styles.progressBar}>
-          <View 
-            style={[styles.progressFill, { width: `${progressPercentage}%` }]} 
+          <View
+            style={[styles.progressFill, { width: `${progressPercentage}%` }]}
           />
         </View>
         {progressPercentage > 0 && (
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.continueButton}
             onPress={handleContinueLearning}
           >
@@ -97,8 +97,8 @@ export default function HomeScreen() {
         <Text style={styles.sectionTitle}>Course Sections</Text>
         {sections.map((section) => {
           const sectionProgress = getSectionProgress(section.id);
-          const sectionPercentage = sectionProgress.total > 0 
-            ? Math.round((sectionProgress.completed / sectionProgress.total) * 100) 
+          const sectionPercentage = sectionProgress.total > 0
+            ? Math.round((sectionProgress.completed / sectionProgress.total) * 100)
             : 0;
 
           return (
@@ -116,14 +116,14 @@ export default function HomeScreen() {
                 <Text style={styles.sectionDescription}>{section.description}</Text>
                 <View style={styles.sectionProgress}>
                   <View style={styles.sectionProgressBar}>
-                    <View 
+                    <View
                       style={[
-                        styles.sectionProgressFill, 
-                        { 
+                        styles.sectionProgressFill,
+                        {
                           width: `${sectionPercentage}%`,
-                          backgroundColor: section.color 
+                          backgroundColor: section.color
                         }
-                      ]} 
+                      ]}
                     />
                   </View>
                   <Text style={styles.sectionProgressText}>

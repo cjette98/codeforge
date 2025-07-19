@@ -10,22 +10,25 @@ import {
 import { useLocalSearchParams, router } from 'expo-router';
 import { useAppStore } from '@/store/useAppStore';
 import { ArrowLeft, Play, CircleCheck as CheckCircle, Clock, BookOpen, Target, Award, Video } from 'lucide-react-native';
+import { MessageCircle } from 'lucide-react-native';
 import VideoPlayer from '@/components/VideoPlayer';
+import AIQuestionHelper from '@/components/AIQuestionHelper';
 
 export default function LessonScreen() {
   const { id } = useLocalSearchParams();
-  const {
-    lessons,
-    sections,
-    getLessonProgress,
-    startLesson,
+  const { 
+    lessons, 
+    sections, 
+    getLessonProgress, 
+    startLesson, 
     startTest,
     currentTest
   } = useAppStore();
-
+  
   const [activeTab, setActiveTab] = useState<'overview' | 'content'>('overview');
   const [showVideoPlayer, setShowVideoPlayer] = useState(false);
-
+  const [showAIHelper, setShowAIHelper] = useState(false);
+  
   const lesson = lessons.find(l => l.id === id);
   const section = lesson ? sections.find(s => s.id === lesson.sectionId) : null;
   const progress = lesson ? getLessonProgress(lesson.id) : null;
@@ -53,7 +56,7 @@ export default function LessonScreen() {
       );
       return;
     }
-
+    
     startTest(lesson.id, type);
     router.push(`/test/${lesson.id}?type=${type}`);
   };
@@ -64,6 +67,10 @@ export default function LessonScreen() {
 
   const handleWatchVideo = () => {
     setShowVideoPlayer(true);
+  };
+
+  const handleAskAI = () => {
+    setShowAIHelper(true);
   };
   return (
     <View style={styles.container}>
@@ -120,7 +127,7 @@ export default function LessonScreen() {
             <View style={styles.lessonInfoCard}>
               <Text style={styles.lessonTitle}>{lesson.title}</Text>
               <Text style={styles.lessonDescription}>{lesson.description}</Text>
-
+              
               <View style={styles.lessonMeta}>
                 <View style={styles.metaItem}>
                   <Clock size={16} color="#6B7280" />
@@ -136,7 +143,7 @@ export default function LessonScreen() {
             {/* Learning Path */}
             <View style={styles.learningPathCard}>
               <Text style={styles.cardTitle}>Learning Path</Text>
-
+              
               {/* Pre-test */}
               <TouchableOpacity
                 style={[
@@ -277,7 +284,7 @@ export default function LessonScreen() {
                 {/* Video Section */}
                 {lesson.videoUrl && (
                   <View style={styles.videoSection}>
-                    <TouchableOpacity
+                    <TouchableOpacity 
                       style={styles.videoButton}
                       onPress={handleWatchVideo}
                     >
@@ -286,9 +293,23 @@ export default function LessonScreen() {
                     </TouchableOpacity>
                   </View>
                 )}
-
+                
                 {/* Text Content */}
                 <Text style={styles.contentText}>{lesson.content}</Text>
+                
+                {/* AI Question Helper Button */}
+                <View style={styles.aiHelperSection}>
+                  <TouchableOpacity 
+                    style={styles.aiHelperButton}
+                    onPress={handleAskAI}
+                  >
+                    <MessageCircle size={20} color="#FFFFFF" />
+                    <Text style={styles.aiHelperButtonText}>Ask AI Tutor</Text>
+                  </TouchableOpacity>
+                  <Text style={styles.aiHelperDescription}>
+                    Have questions about this lesson? Ask our AI tutor for clarification and examples!
+                  </Text>
+                </View>
               </View>
             ) : (
               <View style={styles.lockedContent}>
@@ -308,7 +329,7 @@ export default function LessonScreen() {
           </View>
         )}
       </ScrollView>
-
+      
       {/* Video Player Modal */}
       {lesson.videoUrl && (
         <VideoPlayer
@@ -318,6 +339,14 @@ export default function LessonScreen() {
           onClose={() => setShowVideoPlayer(false)}
         />
       )}
+      
+      {/* AI Question Helper Modal */}
+      <AIQuestionHelper
+        lessonTitle={lesson.title}
+        lessonContent={lesson.content}
+        visible={showAIHelper}
+        onClose={() => setShowAIHelper(false)}
+      />
     </View>
   );
 }
@@ -638,5 +667,40 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '600',
+  },
+  aiHelperSection: {
+    marginTop: 24,
+    padding: 20,
+    backgroundColor: '#F0F9FF',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#BAE6FD',
+  },
+  aiHelperButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#3B82F6',
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    marginBottom: 12,
+    gap: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  aiHelperButtonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  aiHelperDescription: {
+    fontSize: 14,
+    color: '#0369A1',
+    textAlign: 'center',
+    lineHeight: 20,
   },
 });
